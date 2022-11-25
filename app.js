@@ -1,10 +1,20 @@
-const http = require("http");
+//dependencies
+const express = require("express");
 
-const server = http.createServer((req, res) => {
-  res.write("Welcome to Node with ExpressJs");
-  res.end();
+const app = express();
+
+app.use("/express", (req, res, next) => {
+  res.send("<h1>Welcome to Express JS</h1>");
 });
 
-const port = 3000";
+app.use("/hi", (req, res, next) => {
+  res.send("<h1>Welcome to NodeJs/Express</h1>");
+});
 
-server.listen(port);
+app.use("/", (req, res, next) => {
+  res.send("learning NodeJS and Express");
+});
+
+const port = 3000;
+
+app.listen(port);
