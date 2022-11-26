@@ -1,20 +1,16 @@
 //dependencies
+const path = require("path");
 const express = require("express");
+const adminRoutes = require("./routes/admin");
+const routes = require("./routes/shop");
 
 const app = express();
-
-app.use("/express", (req, res, next) => {
-  res.send("<h1>Welcome to Express JS</h1>");
-});
-
-app.use("/hi", (req, res, next) => {
-  res.send("<h1>Welcome to NodeJs/Express</h1>");
-});
-
-app.use("/", (req, res, next) => {
-  res.send("learning NodeJS and Express");
-});
-
 const port = 3000;
-
 app.listen(port);
+
+const static = express.static(path.join(__dirname, "public"));
+
+app.use(static);
+
+app.use("/admin", adminRoutes);
+app.use(routes);
