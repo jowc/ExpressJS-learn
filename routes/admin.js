@@ -9,6 +9,8 @@ const Router = express.Router();
 
 Router.use(parser.urlencoded({ extended: true }));
 
+const products = [];
+
 Router.get("/add-product", (req, res, next) => {
   //   console.log(rootDir);
   res.sendFile(path.join(rootDir, "views", "add-product.html"));
@@ -16,8 +18,10 @@ Router.get("/add-product", (req, res, next) => {
 
 Router.post("/add-product", (req, res, next) => {
   const body = req.body;
-  console.log(body);
+  products.push(body);
+  console.log(products);
   res.send(body);
 });
 
-module.exports = Router;
+exports.routes = Router;
+exports.products = products;
