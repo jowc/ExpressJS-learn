@@ -5,13 +5,18 @@ const Router = express.Router();
 
 const rootDir = require("../utils/path");
 
-const products = require("./admin");
+const adminData = require("./admin");
 
 Router.get("/", (req, res, next) => {
-  console.log("shop.js: ", products.products);
-  const context = { prods: products.products, title: "Shop" };
-  // res.sendFile(path.join(rootDir, "views", "shop.html")
-  res.render("shop", context);
+  const products = adminData.products;
+  res.render("shop", {
+    prods: products,
+    pageTitle: "Shop",
+    path: "/",
+    hasProducts: products.length > 0,
+    activeShop: true,
+    productCSS: true,
+  });
 });
 
 Router.use("*", (req, res, next) => {
