@@ -7,9 +7,8 @@ const adminRoutes = require("./routes/admin");
 const routes = require("./routes/shop");
 
 const app = express();
-const port = 3000;
 
-app.listen(port);
+app.listen(3000);
 
 const static = express.static(path.join(__dirname, "public"));
 
